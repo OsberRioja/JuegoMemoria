@@ -12,9 +12,45 @@ let seconds=60;
 let countdown=null;
 let timerLetter=document.getElementById('tiempo');
 
-let propositions=['a','a','b','b','c','c','d','d','e','e','f','f','g','g','h','h'];
-propositions = propositions.sort(()=>{return Math.random()-0.5});
+let propositions=['a','b','c','d','e','f','g','h'];
+let equivalence=['1','2','3','4','5','6','7','8'];
+
+// Función para crear pares de elementos
+function createPairs(arr1, arr2) {
+    let pairs = [];
+    for (let i = 0; i < arr1.length; i++) {
+        pairs.push([arr1[i], arr2[i]]);
+    }
+    return pairs;
+}
+//crear pares de proposiciones y equivalencias
+let pairs = createPairs(propositions, equivalence);
+
+// Función para desordenar manteniendo la relación entre los pares
+function shufflePairs(pairs) {
+    let currentIndex = pairs.length, randomIndex;
+
+    while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // Intercambiar elementos mientras se mantiene la relación de pares
+        [pairs[currentIndex], pairs[randomIndex]] = [pairs[randomIndex], pairs[currentIndex]];
+    }
+    return pairs;
+}
+
+// Desordenar los pares manteniendo la relación
+pairs = shufflePairs(pairs);
+
+// Separar los pares desordenados en sus arreglos respectivos
+for (let i = 0; i < pairs.length; i++) {
+    propositions[i] = pairs[i][0];
+    equivalence[i] = pairs[i][1];
+}
 console.log(propositions);
+console.log(equivalence);
+
 
 
 function countTime()
