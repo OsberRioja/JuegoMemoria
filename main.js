@@ -66,7 +66,8 @@ function uncover(id)
             IncreaseSuccess();
             if(success==8)
             {
-                timerLetter.innerHTML='GANASTE!!!';
+                clearInterval(countdown);
+                timerLetter.innerHTML=`GANASTE!!!`;
             }
         }
         else{
