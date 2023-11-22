@@ -64,6 +64,10 @@ function uncover(id)
         {
             uncoveredCards=0;
             IncreaseSuccess();
+            if(success==8)
+            {
+                timerLetter.innerHTML='GANASTE!!!';
+            }
         }
         else{
             setTimeout(()=>{
