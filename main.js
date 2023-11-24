@@ -33,6 +33,30 @@ let cards = [
     { value: '(~P u Q)'},//8
 ];
 
+
+function Restart() {
+    clearInterval(countdown); // Detiene el temporizador si está activo
+    timer=false;
+    seconds = 60; // Reinicia el contador de segundos
+    timerLetter.innerHTML = `Tiempo: ${seconds} segundos`; // Actualiza la visualización del tiempo
+
+    uncoveredCards = 0; // Reinicia el conteo de cartas descubiertas
+    movements = 0; // Reinicia el contador de movimientos
+    success = 0; // Reinicia el contador de aciertos
+
+    movLetter.innerHTML = `Movimientos: ${movements}`; // Actualiza la visualización de movimientos
+    successLetter.innerHTML = `Aciertos: ${success}`; // Actualiza la visualización de aciertos
+
+    // Habilita todas las cartas y limpia su contenido
+    for (let i = 0; i < 16; i++) {
+        let currentCard = document.getElementById(i);
+        currentCard.innerHTML = '';
+        currentCard.disabled = false;
+    }
+
+    shuffleCards(cards); // Vuelve a mezclar las cartas
+}
+
 function shuffleCards(cards) {
     cards = cards.sort(()=>{return Math.random()-0.5});
 }
@@ -125,3 +149,5 @@ function IncreaseMovement()
     movLetter=document.getElementById('movimientos');
     movLetter.innerHTML = `Movimientos: ${movements}`;
 }
+
+
