@@ -8,8 +8,10 @@ let movLetter=null;
 let success=0;
 let successLetter=null;
 let timer=false;
-let seconds=60;
+let InitTimer=60;
+let seconds=InitTimer;
 let countdown=null;
+let scoreLetter=document.getElementById('score');
 let timerLetter=document.getElementById('tiempo');
 let firstId=null;
 let secondId=null;
@@ -69,7 +71,6 @@ let pairs = {
 
 // Desordenar las cartas
 shuffleCards(cards);
-console.log(cards);
 
 
 function countTime()
@@ -81,6 +82,9 @@ function countTime()
         {
             clearInterval(countdown);
             blockCards();
+            var score=CalculateScore(success,movements,seconds);
+            //console.log('seconds:',seconds,'aciertos:',success,'movimientos:',movements,'tiempo:',seconds);
+            scoreLetter.innerHTML=`PUNTAJE: ${score}`;
         }
     },1000);
 }
@@ -121,7 +125,10 @@ function uncover(id)
             if(success==8)
             {
                 clearInterval(countdown);
-                timerLetter.innerHTML=`GANASTE!!!`;
+                let timeFinished=calculateTime(seconds);
+                var score=CalculateScore(success,movements,seconds);  
+                timerLetter.innerHTML=`GANASTE!!! en ${timeFinished} segundos`;
+                scoreLetter.innerHTML=`PUNTAJE: ${score}`;
             }
         }
         else{
@@ -151,3 +158,22 @@ function IncreaseMovement()
 }
 
 
+function CalculateScore(finalSucces, finalmovements, tiemeLeft) {
+    const weigthSucces = 10; // Peso de los aciertos en el puntaje
+    const weigthMovements = 1; // Peso de los movimientos en el puntaje
+    const weigthTime = 5; // Peso del tiempo en el puntaje
+
+    // Calcular el puntaje basado en los parámetros recibidos y los pesos asignados
+    let score = (finalSucces * weigthSucces) - (finalmovements * weigthMovements) + (tiemeLeft * weigthTime);
+
+    // Asegurar que el puntaje mínimo sea 0 si no hay aciertos
+    score = Math.max(0, score);
+
+    return score;
+}
+
+function calculateTime(time)
+{
+    let timeLeft=InitTimer-time;
+    return timeLeft;
+}
