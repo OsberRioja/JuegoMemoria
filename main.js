@@ -15,22 +15,22 @@ let firstId=null;
 let secondId=null;
 
 let cards = [
-    { value: 'a'},
-    { value: 'b'},
-    { value: 'c'},
-    { value: 'd'},
-    { value: 'e'},
-    { value: 'f'},
-    { value: 'g'},
-    { value: 'h'},
-    { value: '1'},
-    { value: '2'},
-    { value: '3'},
-    { value: '4'},
-    { value: '5'},
-    { value: '6'},
-    { value: '7'},
-    { value: '8'},
+    { value: '(P n Q)'},//a
+    { value: '[(P n Q) n R]'},//b
+    { value: '[P n (Q u R)]'},//c
+    { value: '(P n P)'},//d
+    { value: '(Q u Q)'},//e
+    { value: '(P n F)'},//f
+    { value: '(Q u V)'},//g
+    { value: '(P -> Q)'},//h
+    { value: '(Q n P)'},//1
+    { value: '[P n (Q n R)]'},//2
+    { value: '[(P n Q)u(P n R)]'},//3
+    { value: 'P'},//4
+    { value: 'Q'},//5
+    { value: 'F'},//6
+    { value: 'V'},//7
+    { value: '(~P u Q)'},//8
 ];
 
 function shuffleCards(cards) {
@@ -39,8 +39,8 @@ function shuffleCards(cards) {
 
 //establecer pares
 let pairs = {
-    'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5, 'f': 6, 'g': 7, 'h': 8,
-     '1':'a','2':'b','3':'c','4':'d','5':'e','6':'f','7':'g','8':'h'
+    '(P n Q)': '(Q n P)', '[(P n Q) n R]': '[P n (Q n R)]', '[P n (Q u R)]': '[(P n Q)u(P n R)]', '(P n P)': 'P', '(Q u Q)': 'Q', '(P n F)': 'F', '(Q u V)': 'V', '(P -> Q)': '(~P u Q)',
+    '(Q n P)':'(P n Q)','[P n (Q n R)]':'[(P n Q) n R]','[(P n Q)u(P n R)]':'[P n (Q u R)]','P':'(P n P)','Q':'(Q u Q)','F':'(P n F)','V':'(Q u V)','(~P u Q)':'(P -> Q)'
 };
 
 // Desordenar las cartas
