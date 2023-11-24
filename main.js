@@ -39,7 +39,7 @@ let cards = [
 function Restart() {
     clearInterval(countdown); // Detiene el temporizador si está activo
     timer=false;
-    seconds = 60; // Reinicia el contador de segundos
+    seconds = InitTimer; // Reinicia el contador de segundos
     timerLetter.innerHTML = `Tiempo: ${seconds} segundos`; // Actualiza la visualización del tiempo
 
     uncoveredCards = 0; // Reinicia el conteo de cartas descubiertas
@@ -52,7 +52,7 @@ function Restart() {
     // Habilita todas las cartas y limpia su contenido
     for (let i = 0; i < 16; i++) {
         let currentCard = document.getElementById(i);
-        currentCard.innerHTML = '';
+        currentCard.innerHTML = ' ';
         currentCard.disabled = false;
     }
 
@@ -106,6 +106,7 @@ function uncover(id)
         countTime();
         timer=true;
     }
+    console.log(uncoveredCards);
     uncoveredCards++;
     if(uncoveredCards==1){
         card1=document.getElementById(id);
